@@ -1,22 +1,23 @@
+import { loginLocators } from "./locators/login_elements";
 class LoginPage {
     visit() {
       cy.visit('https://adactinhotelapp.com/');
     }
   
     enterUsername(username) {
-      cy.get('#username').type(username);
+      cy.get(loginLocators.usernameInput).type(username);
     }
   
     enterPassword(password) {
-      cy.get('#password').type(password);
+      cy.get(loginLocators.passwordInput).type(password);
     }
   
     clickLogin() {
-      cy.get('#login').click();
+      cy.get(loginLocators.loginButton).click();
     }
   
     getErrorMessage() {
-      return cy.get('.error-message');
+      return cy.get(loginLocators.errorMessage);
     }
   }
   
