@@ -1,4 +1,6 @@
 const { defineConfig } = require('cypress');
+const fs = require('fs');
+const path = require('path');
 
 module.exports = defineConfig({
   defaultCommandTimeout: 8000,
@@ -6,15 +8,15 @@ module.exports = defineConfig({
   viewportHeight: 720,
   e2e: {
     setupNodeEvents(on, config) {
-      const env = config.env.environment || 'qa';
-      if (env === 'qa') {
-        config.baseUrl = 'https://adactinhotelapp.com/';
-      } else if (env === 'staging') {
-        config.baseUrl = 'https://testing.maxistime.com';
-      } else if (env === 'prod') {
-        config.baseUrl = 'https://maxistime.com';
+      const environment = config.env.environment || 'qa'; 
+      const envConfigPath = path.resolve(__dirname, 'cypress.env.json');
+      const envConfig = JSON.parse(fs.readFileSync(envConfigPath, 'utf8'));
+      const baseUrl = envConfig[environment]?.baseUrl;
+      if (baseUrl) {
+        config.baseUrl = baseUrl;
+      } else {
+        console.error(`Base URL not found for environment: ${environment}`);
       }
-      require('cypress-mochawesome-reporter/plugin')(on);
 
       return config;
     },

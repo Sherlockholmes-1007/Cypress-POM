@@ -1,7 +1,7 @@
 import { loginLocators } from "./locators/login_elements";
 class LoginPage {
     visit() {
-      cy.visit('https://adactinhotelapp.com/');
+      cy.visit('/');
     }
   
     enterUsername(username) {
