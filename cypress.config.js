@@ -8,16 +8,15 @@ module.exports = defineConfig({
   viewportHeight: 720,
   e2e: {
     setupNodeEvents(on, config) {
-      const environment = config.env.environment || 'qa'; 
-      const envConfigPath = path.resolve(__dirname, 'cypress.env.json');
-      const envConfig = JSON.parse(fs.readFileSync(envConfigPath, 'utf8'));
-      const baseUrl = envConfig[environment]?.baseUrl;
-      if (baseUrl) {
-        config.baseUrl = baseUrl;
-      } else {
-        console.error(`Base URL not found for environment: ${environment}`);
-      }
-
+      require('cypress-mochawesome-reporter/plugin')(on);
+          const environment = config.env.environment || 'qa';
+          const envConfigPath = path.resolve(__dirname, 'cypress.env.json');
+          const envConfig = JSON.parse(fs.readFileSync(envConfigPath, 'utf8'));
+          const baseUrl = envConfig[environment]?.baseUrl || 'https://adactinhotelapp.com/';
+          config.baseUrl = baseUrl;
+            if (!envConfig[environment]?.baseUrl) {
+              console.error(`Using default baseUrl: ${baseUrl} as no environment-specific URL was found.`);
+            }
       return config;
     },
     specPattern: 'cypress/integration/**/*.spec.js',
@@ -26,7 +25,7 @@ module.exports = defineConfig({
   reporterOptions: {
     reportDir: 'cypress/reports',
     overwrite: false,
-    html: false,
+    html: true,
     json: true,
   },
 });
