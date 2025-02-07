@@ -8,6 +8,7 @@
   "main": "basics.js",
   "scripts": {
     "test": "cypress run",
+    "build": "echo 'Nothing to build, just running tests!'",
     "generate-report": "npx mochawesome-merge cypress/reports/*.json | npx mochawesome-report-generator --reportDir cypress/reports"
   },
   "author": "",
