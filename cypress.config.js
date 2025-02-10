@@ -26,9 +26,6 @@ module.exports = defineConfig({
     reportDir: 'cypress/reports',
     overwrite: false,
     html: true,
-    json: true, 
-    charts: true,
-    reportTitle: "Cypress Test Execution Report",
-    embeddedScreenshots: true,
+    json: true,
   },
 });
