@@ -1,4 +1,4 @@
-import { HomePageLocators } from '../page_objects/locators/tools';
+import { HomePageLocators } from './locators/tools_elements';
 
 class HomePage {
   selectLocation(location) {
@@ -31,6 +31,10 @@ class HomePage {
 
   selectChildrenPerRoom(children) {
     cy.get(HomePageLocators.childrenPerRoomDropdown).select(children);
+  }
+  
+  clickSearch() {
+    cy.get(HomePageLocators.searchButton).click();
   }
 }
 

@@ -7,5 +7,6 @@ export const HomePageLocators = {
     checkOutDateInput: '#datepick_out',
     adultsPerRoomDropdown: '#adult_room',
     childrenPerRoomDropdown: '#child_room',
+    searchButton: '#Submit',
   };
   
