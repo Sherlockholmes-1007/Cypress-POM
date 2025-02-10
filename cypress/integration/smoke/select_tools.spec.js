@@ -19,5 +19,6 @@ describe('Homepage Test', () => {
     homePage.enterCheckOutDate('08/02/2025');
     homePage.selectAdultsPerRoom('1 - One');
     homePage.selectChildrenPerRoom('0 - None');
+    homePage.clickSearch();
   });
 });
