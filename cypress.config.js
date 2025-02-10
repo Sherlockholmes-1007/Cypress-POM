@@ -23,9 +23,12 @@ module.exports = defineConfig({
   },
   reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
-    reportDir: 'cypress/reports',
+    reportDir: 'cypress/reports/mochawesome',
     overwrite: false,
     html: true,
     json: true,
+    charts: true,
+    embeddedScreenshots: true,
+    inlineAssets: true,
   },
 });
